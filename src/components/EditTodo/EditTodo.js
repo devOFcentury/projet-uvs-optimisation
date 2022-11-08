@@ -36,11 +36,6 @@ const EditTodo = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if(todo === "") {
-        return setError("Champ vide !!!!");
-    }
-
-    
 
     try{
       setLoading(true);
@@ -68,6 +63,8 @@ const EditTodo = () => {
     
   }
 
+  const disabled = todo === "";
+
   return(
     <div className="container mt-5">
       <form onSubmit={handleSubmit}>
@@ -88,7 +85,7 @@ const EditTodo = () => {
           />
         </div>
         <div className="mb-3 row">
-          <button className="btn btn-success col mt-2" onClick={handleSubmit}>
+          <button className="btn btn-success col mt-2" onClick={handleSubmit} disabled={disabled}>
             {loading ? 'Modification en cours...': 'Modifier'}
           </button>
           <Link to="/home" className="btn btn-danger ms-1 offset-2 col mt-2">Annuler</Link>

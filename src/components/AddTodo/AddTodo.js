@@ -19,11 +19,7 @@ const AddTodo = () => {
   const { userData } = useContext(AuthContext);
 
   const handleSubmit = async e => {
-    e.preventDefault();
-
-    if(todo === "") {
-      return setError('champ vide !!!!');
-    }    
+    e.preventDefault();   
    
     try{
       setLoading(true);
@@ -42,6 +38,8 @@ const AddTodo = () => {
     }
     
   }
+
+  const disabled = todo === "";
 
   return(
     <div className="container mt-5">
@@ -66,7 +64,7 @@ const AddTodo = () => {
           />
         </div>
         <div className="mb-3 row">
-          <button className="btn btn-success col mt-2">
+          <button className="btn btn-success col mt-2" disabled={disabled}>
             {loading ? 'Ajout en cours...': 'Ajouter'}
           </button>
           <Link to="/home" className="link btn btn-danger ms-1 offset-2 col mt-2">Annuler</Link>
